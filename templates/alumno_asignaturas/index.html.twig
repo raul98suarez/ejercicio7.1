@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AlumnoAsignaturasController!
+{% endblock %}
+
+{% block body %}
+	<div>
+		<div>
+			<h1>Asignaturas</h1>
+		</div>
+
+		<div>
+			<table border="1" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Desmatricular Select</th>
+						<th>id</th>
+						<th>codigo</th>
+						<th>nombre</th>
+						<th>nombreIngles</th>
+						<th>credects</th>
+					</tr>
+				</thead>
+				<thbody>
+					{% for asignatura in asignaturasMatriculadas %}
+						<tr>
+							<th><input type="checkbox" name="checkDesmatricular" value="{{asignatura.id}}"></th>
+							<th>{{asignatura.id}}</th>
+							<th>{{asignatura.codigo}}</th>
+							<th>{{asignatura.nombre}}</th>
+							<th>{{asignatura.nombreIngles}}</th>
+							<th>{{asignatura.credects}}</th>
+						</tr>
+					{% endfor %}
+				</thbody>
+			</table>
+		</div>
+
+		<div>
+			<table border="1" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Matricular Select</th>
+						<th>id</th>
+						<th>codigo</th>
+						<th>nombre</th>
+						<th>nombreIngles</th>
+						<th>credects</th>
+					</tr>
+				</thead>
+				<thbody>
+					{% for asignatura in asignaturas %}
+						<tr>
+							<th><input type="checkbox" name="checkMatricular" value="{{asignatura.id}}"></th>
+							<th>{{asignatura.id}}</th>
+							<th>{{asignatura.codigo}}</th>
+							<th>{{asignatura.nombre}}</th>
+							<th>{{asignatura.nombreIngles}}</th>
+							<th>{{asignatura.credects}}</th>
+						</tr>
+					{% endfor %}
+				</thbody>
+			</table>
+		</div>
+		<div>
+			<button type="button" class="matricular">Matricular</button>
+			<button type="button" class="desmatricular">Desmatricular</button>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+    <script type="text/javascript">
+		var path_matricular = "{{ path("matricular",{ "alumnoId":alumnoId }) }}";
+	</script>
+	<script type="text/javascript" src="{{asset('js/matricular.js') }}"></script>
+    <script type="text/javascript">
+		var path_desMatricular = "{{ path("desMatricular",{ "alumnoId":alumnoId }) }}";
+	</script>
+	<script type="text/javascript" src="{{asset('js/desmatricular.js') }}"></script>
+{% endblock %}

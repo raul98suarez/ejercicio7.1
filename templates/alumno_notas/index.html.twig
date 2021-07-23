@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AlumnoNotasController!
+{% endblock %}
+
+{% block body %}
+	<div>
+		<div>
+			<h1>Notas</h1>
+		</div>
+
+		<div>
+			<table border="1" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>Asignatura</th>
+						<th>Nota</th>
+					</tr>
+				</thead>
+				<thbody>
+					{% for nota in notas %}
+						<tr>
+							<th>{{nota.asignatura.id}}</th>
+							<th {% if nota.nota >= 5 %}bgcolor="green"{% endif %}>{{nota.nota}}</th>
+						</tr>
+					{% endfor %}
+				</thbody>
+			</table>
+		</div>
+        <div>Media: {{notas|media}}</div>
+	</div>
+{% endblock %}
